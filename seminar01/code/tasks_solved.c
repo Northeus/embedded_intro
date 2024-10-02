@@ -8,7 +8,7 @@ uint8_t mask(uint8_t number) {
      *  set all bits except second to fifth bit to zero.
      *  Thus for input 0b11111111 function returns 0b00011110.
      **/
-    return 0u;
+    return number & 0b00011110;
 }
 
 uint8_t get_bit(uint8_t number, uint8_t n) {
@@ -18,7 +18,7 @@ uint8_t get_bit(uint8_t number, uint8_t n) {
      *  indexed from zero. For example, if we call
      *  get_bit(0b0010, 1), we receive 1.
      **/
-    return 0u;
+    return (number >> n) & 1;
 }
 
 uint8_t bit_set(uint8_t number, uint8_t n, uint8_t value) {
@@ -28,7 +28,8 @@ uint8_t bit_set(uint8_t number, uint8_t n, uint8_t value) {
      *  specified value, indexed from zero. For example, for calling
      *  bit_set(0b1111, 2, 0) should return 0b1011.
      **/
-    return 0u;
+
+    return (number & (~(1u << n))) | (value << n);
 }
 
 uint8_t bit_flip(uint8_t number, uint8_t n) {
@@ -37,7 +38,9 @@ uint8_t bit_flip(uint8_t number, uint8_t n) {
      *  This function should flip the n-th bit of the given number,
      *  indexed from zero. Calling bit_flip(0b101, 1) returns 0b111.
      **/
-    return 0u;
+    uint8_t bit = get_bit(number, n);
+
+    return bit_set(number, n, !bit);
 }
 
 uint8_t increment(uint8_t* number_addr) {
@@ -47,7 +50,10 @@ uint8_t increment(uint8_t* number_addr) {
      *  if the number is greater or equal 100, set it to zero
      *  and return 1, otherwise do nothing and return 0.
      */
-    return 0u;
+
+    (*number_addr) = ++(*number_addr) % 100;
+
+    return *number_addr == 0;
 }
 
 //=======//

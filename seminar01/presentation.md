@@ -85,6 +85,7 @@
  - Stack (static) vs. heap (dynamic)
  - Referencing variables to obtain their addresses within memory.
  - Dereference addresses to get values from the given memory location.
+ - Sometimes we want to use keyword `volatile` to ensure, that the value is read correctly
 
 ---
 
@@ -102,6 +103,14 @@
  1. Implement the desired functionality marked with `TODO` comments
  1. Check the outcome of asserts
  1. If any problems occur, go back to the third step
+
+---
+
+# Additional sources
+ - [Course PV198 materials](https://pv198.pages.fi.muni.cz/parts/Preliminaries.html)
+ - [C refference](https://en.cppreference.com/w/c)
+ - [Ben Eater (nice videos about how processors work](https://www.youtube.com/c/BenEater)
+ - [Crash Course: Computer Science](https://www.youtube.com/playlist?list=PLH2l6uzC4UEW0s7-KewFLBC1D0l6XRfye)
 
 ---
 
