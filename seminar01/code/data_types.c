@@ -8,7 +8,7 @@ int main() {
 
     // Integral numbers
     int integer = 30;
-    int8_t integer_with_fixed_size = 20;
+    uint8_t integer_with_fixed_size = 20;
     uint32_t unsigned_fixed_integer = 10u; // Note the suffix u
     int bin = 0b0011;   // Prefix "0b" for binary
     int oct = 011;      // Prefix "0" for octal
