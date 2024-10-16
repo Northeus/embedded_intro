@@ -49,6 +49,10 @@
 
 ---
 
+# Modulo vs ternary / if statement
+
+---
+
 # HSV
 
 <style>
