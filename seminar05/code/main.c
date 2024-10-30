@@ -94,16 +94,16 @@ void update_imaginary_led(uint8_t idx, uint8_t state) {
 
 // For simplicity for now, assume we just work with some static
 // values that we might pre-compute later on during runtime.
-const uint8_t first_idx = 1;
+const uint8_t first_idx = 2;
 const uint8_t first_on = 0;
 
 const uint8_t second_idx = 0;
 const uint8_t second_on = 2;
 
-const uint8_t third_idx = 2;
-const uint8_t third_on = 0;
+const uint8_t third_idx = 1;
+const uint8_t third_on = 2;
 
-uint8_t all_off = 255 - first_on - second_on - third_on;
+uint8_t all_off = 255 - 4;
 
 volatile uint8_t state = 0;
 
@@ -112,24 +112,24 @@ void __interrupt(high_priority) timer_interrupt(void) {
         switch (state) {
             case 0:
                 TMR0L = first_on;
-                update_imaginary_led(first_idx, 1);
-                update_imaginary_led(second_idx, 1);
-                update_imaginary_led(third_idx, 1);
+                update_led(first_idx, 1);
+                update_led(second_idx, 1);
+                update_led(third_idx, 1);
                 state = 1;
                 break;
             case 1:
                 TMR0L = second_on;
-                update_imaginary_led(first_idx, 0);
+                update_led(first_idx, 0);
                 state = 2;
                 break;
             case 2:
                 TMR0L = third_on;
-                update_imaginary_led(second_idx, 0);
+                update_led(second_idx, 0);
                 state = 3;
                 break;
             case 3:
                 TMR0L = all_off;
-                update_imaginary_led(third_idx, 0);
+                update_led(third_idx, 0);
                 state = 0;
                 break;
         }
@@ -146,7 +146,7 @@ void measure() {
     set_blue_led(1);
 
     // There is some overhead caused by the 16 bit variable!
-    for (uint16_t i = 0; i < 1000; i++) {
+    for (uint16_t i = 0; i < 10000; i++) {
         // TODO: insert code from interrupt, use imaginary led :)
         switch (state) {
             case 0:
@@ -180,7 +180,7 @@ void measure() {
 void main(void) {
     setup();
 
-    measure();
+    // measure();
 
     while(1) {
 
