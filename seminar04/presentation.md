@@ -34,8 +34,7 @@
 ---
 
 # Assignment
- 1. Check [datasheet](https://ww1.microchip.com/downloads/en/DeviceDoc/40001412G.pdf)
-    and find registers for timer setup:
+ 1. Check [datasheet](https://ww1.microchip.com/downloads/en/DeviceDoc/40001412G.pdf) and find registers for timer setup:
     * Interrupts
     * Timers
  1. Implement simple timer interrupt that toggle our LED

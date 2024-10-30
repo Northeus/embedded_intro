@@ -1,5 +1,7 @@
 #include <xc.h>
 
+#include "hsv_rgb.h"
+
 // minimal config bits setup
 #pragma config WDTEN = OFF      // Turn off the
 #pragma config FOSC = INTIO7    // Pick internal clock
@@ -16,9 +18,9 @@ void imprecise_delay(uint32_t ms) {
 
 void set_bit(volatile unsigned char* reg, uint8_t bit_number, uint8_t value) {
     // Check against invalid values.
-    if (bit_number >= 8 || value > 1) {
-        return;
-    }
+    // if (bit_number >= 8 || value > 1) {
+    //     return;
+    // }
 
     *reg &= ~(1u << bit_number);
     *reg |= (value << bit_number);
@@ -65,18 +67,39 @@ void test_led() {
     set_blue_led(0);
 }
 
+
 void main(void) {
     setup();
 
-    test_led();
+    Color colors[16] = {};
+
+    for (int16_t hue = 0; hue < 16; hue++) {
+        colors[hue] = HSVtoRGB(hue * 16, 250, 250);
+    }
+
+    uint8_t counter = 0;
+    uint8_t timer = 0;
+    uint8_t hue = 0;
+
+    uint8_t red_intensity = colors[0].r;
+    uint8_t green_intensity = colors[0].g;
+    uint8_t blue_intensity = colors[0].b;
 
     while(1) {
-        uint8_t override = get_switch_state(0);
+        set_red_led(red_intensity > counter);
+        set_green_led(green_intensity > counter);
+        set_blue_led(blue_intensity > counter);
 
-        set_red_led(get_switch_state(1) && override);
-        set_green_led(get_switch_state(2) && override);
-        set_blue_led(get_switch_state(3) && override);
+        counter++;
+        timer += counter > 240;
 
-        imprecise_delay(20);
+        if (timer == 0)
+        {
+            hue = hue == 16 ? 0 : hue + 1;
+
+            red_intensity = colors[hue].r >> 6;
+            green_intensity = colors[hue].g >> 6;
+            blue_intensity = colors[hue].b >> 6;
+        }
     }
 }
