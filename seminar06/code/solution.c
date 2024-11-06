@@ -65,7 +65,7 @@ uint16_t read_adc() {
         Nop();
     }
 
-    return (ADRESH << 2) | ADRESL;  // Read the measured value
+    return (ADRESH << 2) | (ADRESL >> 6);  // Read the measured value
 }
 
 // Double buffering
