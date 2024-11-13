@@ -12,49 +12,97 @@
 ---
 
 # MCU Expresso IDE
-- **TODO**:
-  * Include some images for better orientation:
-  * Show:
-    * How to create new project
-    * How to update pins
-    * How to add peripheral
-    * How to find related functions
-    * Setup semihost printing
-  * TASK: Run hello world project that print something
+ - Allows us to:
+   * Configure generated  set-up code
+   * Compile our project
+   * Flash project to board
+   * Debug
+ - Reset IDE layout: Toolbar -> Window -> Perspective -> Reset Perspective
 
 ---
 
-# GPIO - Polling
-- **TODO**:
-  * GPIO reading functions
-  * Pin setup
-  * TASK: make led turn on when button is pressed
+# MCU Expresso IDE - SDK
+ - Kit containing drivers, examples related to a board
+ - Install SDK:
+   1. Chose workspace, close welcome page
+   1. Go to "Installed SDKs" panel (bottom middle tab)
+   1. Right-click on the empty space
+   1. Chose "Download and Install SDKs"
+   1. Find "frdmmcxn947" SDK and install it
 
 ---
 
-# GPIO - Interrupts
-- **TODO**:
-  * Pin setup changes
-  * Add interrupt handler
-  * Update previous solution to use interrupts only
+# MCU Expresso IDE - New Project
+ - To create a new project:
+   1. Go to "Quickstart Panel" (bottom left tab)
+   1. Click on "Create a new C/C++ project..."
+   1. Find "frdmmcxn947" SDK and click "next"
+   1. Change "Project type" to "C++ Project"
+   1. Change "SDK Debug Console" to "Semihost"
 
 ---
 
-# PIT - Timing
-- **TODO**:
-  * Setup timer
-  * Add interrupt
-  * TASK: automatically turn off the LED after 3 seconds
+# Hello world
+ - We can print into console \o/
+ - use `PRINTF` function MACRO the same way as usual prinf
 
 ---
 
-# PWM - LED brightness
-- **TODO**:
-  * Setup pheripheral
-  * Update led brightness
-  * TASK: make led slowly decrease brightness
+# Pin Setup Tool
+ - Allows us to configure pins
+ - Go to Toolbar -> ConfigTools -> Pins
+ - Search pins in Pins panel (on the left)
+ - Click on the square in the first column and route it to correct peripheral
+ - See "Routing details" for pin configuration on the bottom
 
 ---
+
+# Configure Pins
+ 1. In "Functional groups" pick "BOARD_InitLEDsPins"
+ 1. Click on the flag on the right to turn on this group
+ 1. See how the pins are configured in "Routing Details"
+ 1. Do the same for "BOARD_InitBUTTONsPins" functional group
+
+---
+
+# Peripherals Setup Tool
+ - Allows us to configure peripherals (PWM, timers)
+ - Go to Toolbar -> ConfigTools -> Pins
+
+---
+
+# Assignment (together)
+ 1. Look at the generated project stucture
+ 1. Check GPIO drivers in code
+ 1. Check pin setup in code
+ 1. Find functions for handling GPIO
+
+---
+
+# Assignment (Alone)
+ 1. Read button state
+ 1. Print something upon button press
+ 1. Change led whe the button is pressed
+
+# Bonus: Interrupts
+ 1. Update pin config to allows interrupts on button pins
+ 1. Add GPIO interrupt peripheral using Peripheral setup tool
+ 1. Copy and paste interrupt handler into code
+ 1. Handle button press events using interrupts instead of polling
+
+---
+
+# Bonus: PIT
+ 1. Setup PIT peripheral to generate periodic interrupts
+ 1. Print something to console every 3 seconds
+ 1. Add code for PIT handling
+
+---
+
+# Bonus: PWM
+ 1. Setup PWM peripheral
+ 1. Update pin config to route LED from GPIO to PWM
+ 1. Add code for PWM handling
 
 <style>
     img[alt~="center"]
