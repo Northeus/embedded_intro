@@ -2,15 +2,20 @@ import matplotlib.pyplot as plt
 import matplotlib.animation as anim
 import serial
 
-ser = serial.Serial('/dev/ttyACM1', 115200)
+ser = serial.Serial('/dev/ttyACM0', 115200)
 
 fig, ax = plt.subplots()
-ax.set_ylim((0, 4096))
+ax.set_ylim((0, 5000))
 line, = ax.plot(list(range(128)), [0] * 128)
 
 
 def update(frame):
-    data = [int(x) for x in ser.readline().split()]
+    inpu = ser.readline()
+    data = [int(x) for x in inpu.split()]
+
+    if len(data) != 128:
+        return line
+
     line.set_ydata(data)
 
     return line
