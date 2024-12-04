@@ -6,7 +6,7 @@ ser = serial.Serial('/dev/ttyACM0', 115200)
 
 fig, ax = plt.subplots()
 ax.set_ylim((0, 5000))
-line, = ax.plot(list(range(128)), [0] * 128)
+line, = ax.step(list(range(128)), [0] * 128)
 
 
 def update(frame):
@@ -23,3 +23,4 @@ def update(frame):
 
 ani = anim.FuncAnimation(fig, update)
 plt.show()
+
